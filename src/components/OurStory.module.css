@@ -1,0 +1,149 @@
+.section {
+  padding: 120px 40px;
+  background: var(--surface);
+  position: relative;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+/* Text column */
+.textCol {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.textCol .label-caps,
+.textCol [class*="label-caps"] {
+  color: var(--outline);
+  margin-bottom: 4px;
+}
+
+.headline {
+  font-family: var(--font-serif);
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 600;
+  color: var(--on-surface);
+  line-height: 1.2;
+  margin-top: 8px;
+}
+
+.body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--on-surface-variant);
+}
+
+.signature {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 16px;
+  padding-top: 24px;
+  border-top: 0.5px solid rgba(125,118,108,0.2);
+}
+
+.signature > span:first-child {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--outline);
+}
+
+.sigNames {
+  font-family: var(--font-serif);
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--primary);
+  letter-spacing: -0.01em;
+}
+
+/* Photo column */
+.photoCol {
+  position: relative;
+  height: 480px;
+}
+
+.frame {
+  position: absolute;
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+
+.frame:hover {
+  transform: scale(1.02) !important;
+  z-index: 10;
+}
+
+.frameInner {
+  width: 100%;
+  height: 100%;
+  border: 12px solid var(--ivory);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.frameInner img,
+.placeholder {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.placeholder span {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  font-style: italic;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.04em;
+}
+
+.photo1 {
+  width: 65%;
+  height: 340px;
+  top: 0;
+  right: 0;
+  transform: rotate(1.5deg);
+}
+
+.photo2 {
+  width: 52%;
+  height: 220px;
+  bottom: 0;
+  left: 0;
+  transform: rotate(-2deg);
+}
+
+.floralCorner {
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+  width: 100px;
+  pointer-events: none;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .section { padding: 80px 20px; }
+  .container { grid-template-columns: 1fr; gap: 48px; }
+  .photoCol { height: 320px; }
+  .photo1 { width: 70%; height: 240px; }
+  .photo2 { width: 55%; height: 170px; }
+}

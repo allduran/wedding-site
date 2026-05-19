@@ -1,0 +1,191 @@
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #1a2830;
+}
+
+.bg {
+  position: absolute;
+  inset: -20%;
+  will-change: transform;
+}
+
+.gradientOverlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 40%, rgba(72,103,48,0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 100% 80% at 50% 100%, rgba(26,40,48,0.9) 0%, transparent 60%),
+    linear-gradient(160deg, #1a2830 0%, #2c3d2e 35%, #1f3028 60%, #1a2830 100%);
+}
+
+/* Animated canvas-like texture lines */
+.gradientOverlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      95deg,
+      transparent,
+      transparent 80px,
+      rgba(184,150,90,0.025) 80px,
+      rgba(184,150,90,0.025) 81px
+    );
+  animation: drift 20s linear infinite;
+}
+
+@keyframes drift {
+  from { background-position: 0 0; }
+  to { background-position: 200px 0; }
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0 24px;
+  animation: fadeInUp 1.2s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.saveTheDate {
+  color: rgba(184,150,90,0.8);
+  letter-spacing: 0.18em;
+  margin-bottom: 20px;
+  animation: fadeInUp 1.2s 0.15s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+.goldenRule {
+  width: 60px;
+  height: 0.5px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 0 auto 28px;
+  animation: expandLine 1.4s 0.3s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+@keyframes expandLine {
+  from { width: 0; opacity: 0; }
+  to { width: 60px; opacity: 1; }
+}
+
+.names {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+  margin-bottom: 24px;
+}
+
+.name1, .name2 {
+  font-family: var(--font-serif);
+  font-size: clamp(52px, 10vw, 88px);
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  animation: fadeInUp 1.2s 0.25s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+.ampersand {
+  font-family: var(--font-serif);
+  font-size: clamp(28px, 5vw, 44px);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--gold);
+  margin: -4px 0;
+  animation: fadeInUp 1.2s 0.3s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+.date {
+  font-family: var(--font-serif);
+  font-size: clamp(16px, 3vw, 22px);
+  font-weight: 500;
+  color: rgba(255,255,255,0.75);
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+  animation: fadeInUp 1.2s 0.4s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+.location {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(184,150,90,0.7);
+  margin-bottom: 44px;
+  animation: fadeInUp 1.2s 0.45s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+.cta {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--on-surface);
+  background: #fff;
+  text-decoration: none;
+  padding: 14px 36px;
+  border-radius: var(--radius);
+  transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
+  animation: fadeInUp 1.2s 0.55s cubic-bezier(0.16,1,0.3,1) both;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+}
+
+.cta:hover {
+  background: var(--champagne);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+}
+
+/* Floral SVG decoration */
+.floralLeft {
+  position: absolute;
+  bottom: 0;
+  left: -20px;
+  width: 160px;
+  opacity: 0.6;
+  z-index: 1;
+  animation: floatFloral 6s ease-in-out infinite;
+}
+
+@keyframes floatFloral {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(1deg); }
+}
+
+/* Scroll indicator */
+.scrollIndicator {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  animation: fadeInUp 1.2s 1s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+.scrollLine {
+  display: block;
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, rgba(184,150,90,0.6), transparent);
+  margin: 0 auto;
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0% { opacity: 0; transform: scaleY(0); transform-origin: top; }
+  50% { opacity: 1; transform: scaleY(1); transform-origin: top; }
+  100% { opacity: 0; transform: scaleY(1) translateY(20px); transform-origin: top; }
+}
