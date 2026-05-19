@@ -1,67 +1,36 @@
-.footer {
-  padding: 64px 40px;
-  background: var(--surface-container-low);
-  border-top: 0.5px solid rgba(125,118,108,0.15);
+.footer { background: var(--dark); padding: 0 0 48px; }
+.rule { width: 100%; margin-bottom: 0; }
+.inner {
+  padding: 60px 48px 0;
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+  text-align: center;
 }
-
-.container {
-  max-width: 1120px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-}
-
 .names {
-  font-family: var(--font-serif);
-  font-size: 32px;
-  font-weight: 600;
-  color: var(--on-surface);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  letter-spacing: -0.01em;
+  font-family: var(--font-serif); font-size: 36px; font-weight: 600;
+  color: #fff; letter-spacing: -0.01em;
 }
-
-.amp {
-  font-style: italic;
-  color: var(--gold);
-  font-weight: 400;
-  font-size: 24px;
+.names em { font-style: italic; color: var(--gold); font-weight: 400; }
+.date {
+  font-family: var(--font-sans); font-size: 12px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(184,150,90,0.5);
 }
-
 .links {
-  list-style: none;
-  display: flex;
-  gap: 28px;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: flex; gap: 28px; margin-top: 8px;
 }
-
 .links a {
-  font-family: var(--font-sans);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--outline);
-  text-decoration: none;
+  font-family: var(--font-sans); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(255,255,255,0.35); text-decoration: none;
   transition: color 0.2s;
 }
-
-.links a:hover {
-  color: var(--primary);
-}
-
+.links a:hover { color: #fff; }
 .copy {
-  font-family: var(--font-sans);
-  font-size: 12px;
-  color: rgba(125,118,108,0.6);
-  margin-top: 8px;
+  font-family: var(--font-serif); font-style: italic;
+  font-size: 13px; color: rgba(255,255,255,0.2);
+  margin-top: 16px;
 }
-
 @media (max-width: 480px) {
-  .footer { padding: 48px 20px; }
-  .names { font-size: 26px; }
+  .inner { padding: 48px 20px 0; }
+  .names { font-size: 28px; }
 }

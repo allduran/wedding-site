@@ -1,149 +1,77 @@
-.section {
-  padding: 120px 40px;
-  background: var(--surface);
-  position: relative;
-  overflow: hidden;
-}
+.section { background: var(--dark); }
 
-.container {
-  max-width: 1120px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: center;
+/* Full-bleed photo panel */
+.photoPanel {
+  position: relative; height: 85vh; min-height: 500px; overflow: hidden;
 }
-
-/* Text column */
-.textCol {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.textCol .label-caps,
-.textCol [class*="label-caps"] {
-  color: var(--outline);
-  margin-bottom: 4px;
-}
-
-.headline {
-  font-family: var(--font-serif);
-  font-size: clamp(28px, 4vw, 40px);
-  font-weight: 600;
-  color: var(--on-surface);
-  line-height: 1.2;
-  margin-top: 8px;
-}
-
-.body {
-  font-family: var(--font-sans);
-  font-size: 16px;
-  line-height: 1.75;
-  color: var(--on-surface-variant);
-}
-
-.signature {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  margin-top: 16px;
-  padding-top: 24px;
-  border-top: 0.5px solid rgba(125,118,108,0.2);
-}
-
-.signature > span:first-child {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 15px;
-  color: var(--outline);
-}
-
-.sigNames {
-  font-family: var(--font-serif);
-  font-size: 26px;
-  font-weight: 600;
-  color: var(--primary);
-  letter-spacing: -0.01em;
-}
-
-/* Photo column */
-.photoCol {
-  position: relative;
-  height: 480px;
-}
-
-.frame {
-  position: absolute;
-  border-radius: var(--radius);
-  overflow: hidden;
-  transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
-}
-
-.frame:hover {
-  transform: scale(1.02) !important;
-  z-index: 10;
-}
-
-.frameInner {
-  width: 100%;
-  height: 100%;
-  border: 12px solid var(--ivory);
-  box-shadow: var(--shadow-card);
-  overflow: hidden;
-}
-
-.frameInner img,
-.placeholder {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.photoPanel img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center 20%;
   display: block;
+  transition: transform 8s ease;
 }
-
-.placeholder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.photoPanel:hover img { transform: scale(1.03); }
+.photoPanelOverlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(14,20,16,0.85) 0%, rgba(14,20,16,0.1) 60%);
 }
-
-.placeholder span {
+.photoPanelText {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 60px 80px;
+  display: flex; flex-direction: column; gap: 20px;
+}
+.panelLabel { color: var(--gold); }
+.panelQuote {
   font-family: var(--font-serif);
-  font-size: 14px;
-  font-style: italic;
-  color: rgba(255,255,255,0.7);
-  letter-spacing: 0.04em;
+  font-size: clamp(22px, 4vw, 40px); font-weight: 400;
+  font-style: italic; color: #fff;
+  line-height: 1.35; max-width: 700px;
 }
 
-.photo1 {
-  width: 65%;
-  height: 340px;
-  top: 0;
-  right: 0;
-  transform: rotate(1.5deg);
+/* Story text grid */
+.storyGrid {
+  display: grid; grid-template-columns: 1fr 2fr;
+  gap: 0; padding: 100px 80px;
+  max-width: 1100px; margin: 0 auto;
+}
+.storyLeft {
+  padding-top: 8px;
+  display: flex; align-items: flex-start;
+}
+.ruleLeft { width: 48px; }
+.storyRight {
+  display: flex; flex-direction: column; gap: 24px;
+  padding-left: 60px;
+  border-left: 0.5px solid rgba(184,150,90,0.2);
+}
+.body {
+  font-family: var(--font-sans); font-size: 17px;
+  line-height: 1.8; color: rgba(255,255,255,0.72);
+}
+.sig {
+  font-family: var(--font-serif); font-style: italic;
+  font-size: 18px; color: var(--gold); margin-top: 8px;
 }
 
-.photo2 {
-  width: 52%;
-  height: 220px;
-  bottom: 0;
-  left: 0;
-  transform: rotate(-2deg);
+/* Hands photo */
+.handsWrap {
+  position: relative; height: 70vh; min-height: 420px; overflow: hidden;
+}
+.handsWrap img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center;
+  display: block; transition: transform 8s ease;
+}
+.handsWrap:hover img { transform: scale(1.03); }
+.handsCaption {
+  position: absolute; bottom: 32px; right: 48px;
+}
+.captionText {
+  color: rgba(255,255,255,0.5); font-size: 10px;
 }
 
-.floralCorner {
-  position: absolute;
-  bottom: -10px;
-  right: -10px;
-  width: 100px;
-  pointer-events: none;
-}
-
-/* Mobile */
 @media (max-width: 768px) {
-  .section { padding: 80px 20px; }
-  .container { grid-template-columns: 1fr; gap: 48px; }
-  .photoCol { height: 320px; }
-  .photo1 { width: 70%; height: 240px; }
-  .photo2 { width: 55%; height: 170px; }
+  .photoPanelText { padding: 40px 24px; }
+  .storyGrid { grid-template-columns: 1fr; padding: 64px 24px; }
+  .storyLeft { display: none; }
+  .storyRight { padding-left: 0; border-left: none; border-top: 0.5px solid rgba(184,150,90,0.2); padding-top: 32px; }
+  .handsCaption { right: 20px; }
 }
