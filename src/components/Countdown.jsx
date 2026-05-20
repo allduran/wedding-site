@@ -7,7 +7,6 @@ export default function Countdown() {
     { v: days, l: 'Days' }, { v: hours, l: 'Hours' },
     { v: minutes, l: 'Min' }, { v: seconds, l: 'Sec' },
   ];
-
   return (
     <div className={styles.bar}>
       <p className={`label-caps ${styles.label}`}>Until we say I do</p>
@@ -15,8 +14,8 @@ export default function Countdown() {
         {units.map(({ v, l }, i) => (
           <div key={l} className={styles.unit}>
             <span className={styles.num}>{String(v).padStart(2,'0')}</span>
-            <span className={styles.unitLabel}>{l}</span>
-            {i < 3 && <span className={styles.colon}>:</span>}
+            <span className={styles.uLabel}>{l}</span>
+            {i < 3 && <span className={styles.dot}>·</span>}
           </div>
         ))}
       </div>

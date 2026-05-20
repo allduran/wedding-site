@@ -1,36 +1,11 @@
-.footer { background: var(--dark); padding: 0 0 48px; }
-.rule { width: 100%; margin-bottom: 0; }
-.inner {
-  padding: 60px 48px 0;
-  display: flex; flex-direction: column; align-items: center; gap: 12px;
-  text-align: center;
-}
-.names {
-  font-family: var(--font-serif); font-size: 36px; font-weight: 600;
-  color: #fff; letter-spacing: -0.01em;
-}
-.names em { font-style: italic; color: var(--gold); font-weight: 400; }
-.date {
-  font-family: var(--font-sans); font-size: 12px; font-weight: 600;
-  letter-spacing: 0.1em; text-transform: uppercase;
-  color: rgba(184,150,90,0.5);
-}
-.links {
-  display: flex; gap: 28px; margin-top: 8px;
-}
-.links a {
-  font-family: var(--font-sans); font-size: 11px; font-weight: 600;
-  letter-spacing: 0.1em; text-transform: uppercase;
-  color: rgba(255,255,255,0.35); text-decoration: none;
-  transition: color 0.2s;
-}
-.links a:hover { color: #fff; }
-.copy {
-  font-family: var(--font-serif); font-style: italic;
-  font-size: 13px; color: rgba(255,255,255,0.2);
-  margin-top: 16px;
-}
-@media (max-width: 480px) {
-  .inner { padding: 48px 20px 0; }
-  .names { font-size: 28px; }
-}
+.footer { background: var(--ivory-dark); padding: 56px 24px 40px; }
+.inner { max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; }
+.floralRow { display: flex; align-items: center; gap: 12px; width: 240px; margin-bottom: 4px; }
+.divLine { flex: 1; height: 0.5px; background: var(--sage-light); }
+.names { font-family: var(--font-script); font-size: 44px; color: var(--sage-deep); line-height: 1; }
+.names em { font-style: italic; color: var(--sage-mid); }
+.date { font-family: var(--font-sans); font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-light); }
+.links { display: flex; gap: 24px; margin-top: 8px; }
+.links a { font-family: var(--font-sans); font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-light); text-decoration: none; transition: color 0.2s; }
+.links a:hover { color: var(--sage-deep); }
+.copy { font-family: var(--font-serif); font-style: italic; font-size: 13px; color: var(--ivory-deep); margin-top: 12px; }

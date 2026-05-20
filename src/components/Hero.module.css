@@ -1,81 +1,204 @@
 .hero {
-  position: relative; height: 100svh; min-height: 600px;
-  display: flex; align-items: flex-end; justify-content: center;
-  overflow: hidden;
+  position: relative; min-height: 100svh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  overflow: hidden; padding: 100px 24px 80px;
 }
-.imgWrap {
-  position: absolute; inset: -15%;
-  will-change: transform;
-}
-.img {
-  width: 100%; height: 100%; object-fit: cover; object-position: center 30%;
-  display: block;
-}
-.overlay {
+.bg {
   position: absolute; inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(14,20,16,0.2) 0%,
-    rgba(14,20,16,0.1) 30%,
-    rgba(14,20,16,0.55) 70%,
-    rgba(14,20,16,0.92) 100%
-  );
+  background: linear-gradient(160deg, var(--sage-pale) 0%, var(--ivory) 50%, var(--ivory-dark) 100%);
 }
-.content {
+/* Subtle botanical bg pattern */
+.bg::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle at 20% 20%, rgba(107,127,88,0.06) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 80%, rgba(107,127,88,0.06) 0%, transparent 50%);
+}
+
+.scene {
   position: relative; z-index: 2;
-  text-align: center; padding: 0 24px 80px;
-  display: flex; flex-direction: column; align-items: center; gap: 0;
-  animation: up 1.3s cubic-bezier(0.16,1,0.3,1) both;
-}
-@keyframes up { from { opacity:0; transform:translateY(40px); } to { opacity:1; transform:none; } }
-
-.eyebrow { color: rgba(184,150,90,0.85); margin-bottom: 18px; }
-.rule { width: 56px; margin-bottom: 24px; animation: grow 1.4s 0.2s cubic-bezier(0.16,1,0.3,1) both; }
-@keyframes grow { from { width:0; opacity:0; } to { width:56px; opacity:1; } }
-
-.names {
   display: flex; flex-direction: column; align-items: center;
-  line-height: 1; margin-bottom: 20px;
+  width: 100%; max-width: 500px;
 }
-.n1, .n2 {
-  font-family: var(--font-serif);
-  font-size: clamp(56px, 12vw, 110px);
-  font-weight: 700; color: #fff;
-  letter-spacing: -0.025em; line-height: 0.95;
-}
-.amp {
-  font-family: var(--font-serif); font-style: italic; font-weight: 400;
-  font-size: clamp(28px, 5vw, 48px); color: var(--gold);
-  margin: 4px 0;
-}
-.date {
-  font-family: var(--font-serif); font-size: clamp(14px, 2.5vw, 18px);
-  font-weight: 400; color: rgba(255,255,255,0.7);
-  letter-spacing: 0.08em; margin-bottom: 36px;
-}
-.cta {
-  display: inline-block;
-  font-family: var(--font-sans); font-size: 11px; font-weight: 600;
-  letter-spacing: 0.16em; text-transform: uppercase;
-  color: var(--dark); background: var(--gold);
-  text-decoration: none; padding: 14px 40px; border-radius: 2px;
-  transition: opacity 0.2s, transform 0.2s;
-}
-.cta:hover { opacity: 0.85; transform: translateY(-2px); }
 
-.scroll {
-  position: absolute; bottom: 28px; left: 50%;
-  transform: translateX(-50%); z-index: 3;
-  display: flex; flex-direction: column; align-items: center; gap: 8px;
-  animation: up 1.3s 1s cubic-bezier(0.16,1,0.3,1) both;
+/* ---- ENVELOPE ---- */
+.envelope {
+  position: relative; width: 340px; height: 220px;
+  margin-bottom: -110px;
+  transition: transform 0.8s cubic-bezier(0.16,1,0.3,1);
+  z-index: 1;
 }
+.envelopeOpen { transform: translateY(-20px); }
+
+.envBody { position: absolute; inset: 0; }
+
+/* Envelope sides & bottom as CSS triangles/shapes */
+.envBottom {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 100%;
+  background: var(--sage);
+  border-radius: 2px;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+.envLeft {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 100%;
+  background: var(--sage-mid);
+  clip-path: polygon(0 0, 50% 55%, 100% 0, 0 0);
+  z-index: 2;
+}
+.envRight {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 100%;
+  background: var(--sage-deep);
+  clip-path: polygon(0 100%, 50% 55%, 100% 100%, 0 100%);
+  z-index: 2;
+}
+
+/* Flap */
+.envFlap {
+  position: absolute; top: 0; left: 0; right: 0; height: 55%;
+  transform-origin: top center;
+  transform: rotateX(0deg);
+  transition: transform 0.7s cubic-bezier(0.4,0,0.2,1);
+  z-index: 5;
+  perspective: 600px;
+}
+.envFlapOpen { transform: rotateX(-165deg); }
+.envFlapInner {
+  width: 100%; height: 100%;
+  background: var(--sage-mid);
+  clip-path: polygon(0 0, 50% 100%, 100% 0);
+}
+
+.sealOnFlap {
+  position: absolute; bottom: -26px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+/* Photo peeking out of envelope */
+.envPhoto {
+  position: absolute; bottom: 20px; left: 50%;
+  transform: translateX(-50%) translateY(0px);
+  transition: transform 0.8s 0.3s cubic-bezier(0.16,1,0.3,1);
+  z-index: 3;
+}
+.envPhotoRisen { transform: translateX(-50%) translateY(-90px); }
+.polaroidInEnv {
+  width: 120px;
+  background: #fff;
+  padding: 8px 8px 24px;
+  box-shadow: 0 4px 20px rgba(44,48,32,0.2);
+  transform: rotate(-3deg);
+}
+.polaroidInEnv img { width: 100%; height: 90px; object-fit: cover; object-position: center 15%; display: block; filter: grayscale(20%); }
+
+/* ---- INVITATION CARD ---- */
+.card {
+  position: relative; width: 340px;
+  background: var(--paper);
+  border: 0.5px solid var(--ivory-deep);
+  box-shadow: 0 8px 48px rgba(44,48,32,0.12), 0 2px 8px rgba(44,48,32,0.08);
+  padding: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
+  z-index: 2;
+  /* Arched top */
+  border-radius: 160px 160px 4px 4px;
+}
+.cardVisible { opacity: 1; transform: translateY(0); }
+
+.floralTop {
+  width: 180px; display: block; margin: 0 auto;
+  margin-top: -10px; margin-bottom: -16px;
+}
+.floralBottom {
+  width: 140px; display: block; margin: 0 auto;
+  margin-bottom: -10px; transform: scaleY(-1);
+  opacity: 0.7;
+}
+
+.cardInner {
+  padding: 12px 40px 28px;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 10px; text-align: center;
+}
+.cardEyebrow { color: var(--text-light); margin-bottom: -4px; }
+.cardSub {
+  font-family: var(--font-serif); font-style: italic;
+  font-size: 14px; color: var(--text-light); line-height: 1.5;
+}
+.cardNames {
+  display: flex; flex-direction: column; align-items: center; gap: 0;
+  line-height: 1; margin: 4px 0;
+}
+.scriptName {
+  font-family: var(--font-script);
+  font-size: 54px; color: var(--sage-deep); line-height: 1.1;
+}
+.cardAmp {
+  font-family: var(--font-serif); font-style: italic; font-weight: 400;
+  font-size: 20px; color: var(--sage-mid); margin: -4px 0;
+}
+.cardDivider {
+  width: 40px; height: 0.5px;
+  background: linear-gradient(90deg, transparent, var(--sage-mid), transparent);
+  margin: 2px 0;
+}
+.cardDay {
+  font-family: var(--font-sans); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-light);
+}
+.cardDayNum {
+  font-family: var(--font-serif);
+  font-size: 52px; font-weight: 600; color: var(--dark);
+  line-height: 1; letter-spacing: -0.02em;
+}
+.cardMonthYear {
+  font-family: var(--font-sans); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-light);
+}
+.cardDate { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.cardLocation {
+  font-family: var(--font-serif); font-size: 16px; font-weight: 600;
+  color: var(--dark);
+}
+.cardLocationSub {
+  font-family: var(--font-serif); font-style: italic;
+  font-size: 13px; color: var(--text-light);
+}
+.cardCta {
+  display: inline-block; margin-top: 8px;
+  font-family: var(--font-sans); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: #fff; background: var(--sage-deep);
+  text-decoration: none; padding: 11px 32px; border-radius: 2px;
+  transition: background 0.2s, transform 0.2s;
+}
+.cardCta:hover { background: var(--sage); transform: translateY(-1px); }
+
+/* Scroll hint */
+.scrollHint {
+  position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  z-index: 3; opacity: 0; transition: opacity 0.8s 0.5s;
+}
+.scrollHintVisible { opacity: 1; }
 .scrollLine {
-  display: block; width: 1px; height: 40px;
-  background: linear-gradient(to bottom, rgba(184,150,90,0.7), transparent);
+  display: block; width: 1px; height: 36px;
+  background: linear-gradient(to bottom, var(--sage-mid), transparent);
   animation: pulse 2.2s ease-in-out infinite;
 }
 @keyframes pulse {
-  0% { opacity:0; transform:scaleY(0); transform-origin:top; }
-  50% { opacity:1; transform:scaleY(1); transform-origin:top; }
-  100% { opacity:0; transform:translateY(16px) scaleY(1); transform-origin:top; }
+  0%   { opacity:0; transform:scaleY(0); transform-origin:top; }
+  50%  { opacity:1; transform:scaleY(1); transform-origin:top; }
+  100% { opacity:0; transform:translateY(14px) scaleY(1); }
+}
+
+@media (max-width: 480px) {
+  .envelope { width: 290px; height: 190px; margin-bottom: -95px; }
+  .card { width: 290px; }
+  .scriptName { font-size: 44px; }
+  .cardInner { padding: 12px 28px 24px; }
 }
