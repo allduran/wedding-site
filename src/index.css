@@ -1,76 +1,70 @@
-@import '@fontsource/cormorant-garamond/400.css';
-@import '@fontsource/cormorant-garamond/400-italic.css';
-@import '@fontsource/cormorant-garamond/600.css';
-@import '@fontsource/cormorant-garamond/600-italic.css';
-@import '@fontsource/great-vibes/400.css';
+@import '@fontsource/bodoni-moda/400.css';
+@import '@fontsource/bodoni-moda/400-italic.css';
+@import '@fontsource/bodoni-moda/600.css';
+@import '@fontsource/bodoni-moda/700.css';
 @import '@fontsource/dm-sans/400.css';
 @import '@fontsource/dm-sans/600.css';
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --sage-deep:    #4a5e3a;
-  --sage:         #6b7f58;
-  --sage-mid:     #8a9e75;
-  --sage-light:   #c8d5bc;
-  --sage-pale:    #e8efe3;
-  --ivory:        #f7f4ed;
-  --ivory-dark:   #ece7dc;
-  --ivory-deep:   #d8d0c0;
-  --paper:        #faf8f3;
-  --dark:         #2c3020;
-  --text:         #3a3d2e;
-  --text-light:   #6b6e5c;
-  --gold:         #b8965a;
-  --gold-light:   #d4b483;
-  --wax-sage:     #5a7248;
-  --wax-ivory:    #c8bfa8;
+  --bg:          #fff8f2;
+  --surface:     #fcecd3;
+  --surface-low: #fff2df;
+  --glass-bg:    rgba(252,236,211,0.55);
+  --glass-border:rgba(184,115,51,0.22);
+  --dark:        #06100e;
+  --dark-mid:    #1b2623;
+  --copper:      #b87333;
+  --copper-light:#d4935a;
+  --text:        #221b0b;
+  --text-muted:  #434846;
+  --cream:       #ffffff;
 
-  --font-script:  'Great Vibes', cursive;
-  --font-serif:   'Cormorant Garamond', Georgia, serif;
-  --font-sans:    'DM Sans', system-ui, sans-serif;
+  --serif: 'Bodoni Moda', Georgia, serif;
+  --sans:  'DM Sans', system-ui, sans-serif;
 }
 
 html { scroll-behavior: smooth; }
+
 body {
-  font-family: var(--font-sans);
-  background: var(--ivory);
+  font-family: var(--sans);
+  background: var(--bg);
   color: var(--text);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
 
-/* Paper texture overlay */
-body::before {
+/* Grain overlay */
+body::after {
   content: '';
   position: fixed; inset: 0; pointer-events: none; z-index: 9999;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-  background-size: 300px 300px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.028'/%3E%3C/svg%3E");
+  background-size: 250px;
   mix-blend-mode: multiply;
 }
 
-/* Reveal system */
-.reveal, .reveal-up, .reveal-left, .reveal-right, .reveal-scale {
-  opacity: 0;
-  transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid var(--glass-border);
 }
-.reveal     { transform: translateY(28px); }
-.reveal-up  { transform: translateY(28px); }
-.reveal-left  { transform: translateX(-28px); }
-.reveal-right { transform: translateX(28px); }
-.reveal-scale { transform: scale(0.93) translateY(16px); }
-.reveal.visible, .reveal-up.visible, .reveal-left.visible,
-.reveal-right.visible, .reveal-scale.visible {
-  opacity: 1; transform: none;
-}
-.d1 { transition-delay: 0.08s; }
-.d2 { transition-delay: 0.18s; }
-.d3 { transition-delay: 0.3s; }
-.d4 { transition-delay: 0.44s; }
-.d5 { transition-delay: 0.6s; }
 
 .label-caps {
-  font-family: var(--font-sans);
-  font-size: 10px; font-weight: 600;
-  letter-spacing: 0.18em; text-transform: uppercase;
+  font-family: var(--sans);
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.22em; text-transform: uppercase;
 }
+
+/* Scroll reveal */
+.reveal, .reveal-left, .reveal-right, .reveal-scale {
+  opacity: 0;
+  transition: opacity 1s cubic-bezier(0.16,1,0.3,1), transform 1s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal       { transform: translateY(32px); }
+.reveal-left  { transform: translateX(-32px); }
+.reveal-right { transform: translateX(32px); }
+.reveal-scale { transform: scale(0.94) translateY(16px); }
+.reveal.v, .reveal-left.v, .reveal-right.v, .reveal-scale.v { opacity:1; transform:none; }
+.d1{transition-delay:.1s}.d2{transition-delay:.22s}.d3{transition-delay:.36s}.d4{transition-delay:.5s}

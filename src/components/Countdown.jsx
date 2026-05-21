@@ -2,7 +2,7 @@ import { useCountdown } from '../hooks/useCountdown';
 import styles from './Countdown.module.css';
 
 export default function Countdown() {
-  const { days, hours, minutes, seconds } = useCountdown('2025-09-14T16:00:00');
+  const { days, hours, minutes, seconds } = useCountdown('2026-09-14T16:00:00');
   const units = [
     { v: days, l: 'Days' }, { v: hours, l: 'Hours' },
     { v: minutes, l: 'Min' }, { v: seconds, l: 'Sec' },

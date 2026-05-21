@@ -1,60 +1,85 @@
+import { useRef } from 'react';
+import { useCountdown } from '../hooks/useCountdown';
 import styles from './Events.module.css';
 
-function WaxSeal({ label, size = 72 }) {
+function TiltCard({ children, className }) {
+  const ref = useRef(null);
+  const move = e => {
+    const el = ref.current; if (!el) return;
+    const { left, top, width, height } = el.getBoundingClientRect();
+    const x = ((e.clientX - left) / width  - 0.5) * 14;
+    const y = ((e.clientY - top)  / height - 0.5) * 10;
+    el.style.transform = `perspective(900px) rotateY(${x}deg) rotateX(${-y}deg) translateZ(10px)`;
+  };
+  const reset = () => { if (ref.current) ref.current.style.transform = ''; };
   return (
-    <div className={styles.waxSeal} style={{ width: size, height: size }}>
-      <div className={styles.waxRing} />
-      <span className={styles.waxText}>{label}</span>
+    <div ref={ref} className={className} onMouseMove={move} onMouseLeave={reset}
+      style={{ transition: 'transform 0.15s ease', willChange: 'transform', cursor: 'default' }}>
+      {children}
     </div>
   );
 }
 
-function EventCard({ seal, title, time, location, address, mapUrl, delay }) {
+function CountdownBlock() {
+  const { days, hours, minutes, seconds } = useCountdown('2026-09-14T16:00:00');
   return (
-    <div className={`${styles.card} reveal-scale ${delay}`}>
-      <div className={styles.cardSeal}><WaxSeal label={seal} /></div>
-      <h3 className={styles.cardTitle}>{title}</h3>
-      <div className={styles.cardRule} />
-      <p className={styles.time}>{time}</p>
-      <p className={styles.locationName}>{location}</p>
-      <p className={styles.address}>{address}</p>
-      <a href={mapUrl} target="_blank" rel="noopener noreferrer" className={styles.mapLink}>
-        Get Directions ↗
-      </a>
+    <div className={`${styles.countdownCard} reveal d3`}>
+      <span className={`label-caps ${styles.cardLabel}`} style={{color:'rgba(212,147,90,0.7)'}}>Until we say I do</span>
+      <div className={styles.countdownUnits}>
+        {[['days',days],['hrs',hours],['min',minutes],['sec',seconds]].map(([l,v],i,a) => (
+          <div key={l} className={styles.unit}>
+            <span className={styles.unitNum}>{String(v).padStart(2,'0')}</span>
+            <span className={styles.unitLabel}>{l}</span>
+            {i < a.length-1 && <span className={styles.unitSep}>:</span>}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
 
 export default function Events() {
   return (
-    <section id="events" className={styles.section}>
-      {/* Sage header band */}
-      <div className={styles.band}>
-        <p className={`label-caps reveal ${styles.bandEyebrow}`}>You are invited</p>
-        <h2 className={`reveal d1 ${styles.bandHeadline}`}>The Details</h2>
-        <p className={`reveal d2 ${styles.bandSub}`}>Saturday · September 14, 2025 · Sonoma, California</p>
-      </div>
-
-      {/* Cards on ivory */}
-      <div className={styles.cardsWrap}>
-        <div className={styles.cards}>
-          <EventCard
-            seal="I" title="Ceremony"
-            time="4:00 in the Afternoon"
-            location="St. Jude's Chapel"
-            address="123 Vineyard Lane, Sonoma, CA"
-            mapUrl="https://maps.google.com"
-            delay="d1"
-          />
-          <div className={styles.cardsDivider} />
-          <EventCard
-            seal="II" title="Reception"
-            time="6:30 PM · Dinner & Dancing"
-            location="The Golden Estate"
-            address="456 Oak Ridge, Sonoma, CA"
-            mapUrl="https://maps.google.com"
-            delay="d3"
-          />
+    <section id="details" className={styles.section}>
+      <div className={styles.container}>
+        <div className={styles.chapterRow}>
+          <span className={`label-caps reveal ${styles.chapter}`}>Logística</span>
+          <span className={styles.chapterLine} />
+        </div>
+        <div className={styles.bento}>
+          <div className={`${styles.photoBanner} reveal-scale`}>
+            <img src="./photo-laugh.jpg" alt="Erik and Keren laughing" />
+            <div className={styles.bannerOverlay} />
+            <div className={styles.bannerText}>
+              <p className={`label-caps ${styles.bannerLabel}`}>Saturday · 14 September 2025</p>
+              <h2 className={styles.bannerHeadline}>The Day</h2>
+            </div>
+          </div>
+          <TiltCard className={`glass ${styles.eventCard} reveal d1`}>
+            <div className={styles.eventIcon}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1"><path d="M12 2L2 7v15h20V7L12 2zM8 22V12h8v10"/></svg>
+            </div>
+            <span className={`label-caps ${styles.cardLabel}`}>Ceremonia</span>
+            <h3 className={styles.eventTitle}>Ceremony</h3>
+            <div className={styles.copperRule} />
+            <p className={styles.eventTime}>Sábado, 14 de Septiembre · 16:00</p>
+            <p className={styles.eventVenue}>Capilla del Bosque Antiguo</p>
+            <p className={styles.eventAddress}>Sonoma, California</p>
+            <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className={styles.mapLink}>Get Directions →</a>
+          </TiltCard>
+          <TiltCard className={`glass ${styles.eventCard} reveal d2`}>
+            <div className={styles.eventIcon}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg>
+            </div>
+            <span className={`label-caps ${styles.cardLabel}`}>Recepción</span>
+            <h3 className={styles.eventTitle}>Reception</h3>
+            <div className={styles.copperRule} />
+            <p className={styles.eventTime}>Continuación · 19:00</p>
+            <p className={styles.eventVenue}>El Invernadero Editorial</p>
+            <p className={styles.eventAddress}>456 Oak Ridge, Sonoma</p>
+            <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className={styles.mapLink}>Get Directions →</a>
+          </TiltCard>
+          <CountdownBlock />
         </div>
       </div>
     </section>

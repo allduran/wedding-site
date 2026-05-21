@@ -1,75 +1,143 @@
-.section { background: var(--ivory); padding: 100px 48px; }
-.container { max-width: 1080px; margin: 0 auto; display: flex; flex-direction: column; gap: 72px; }
+.section { background: var(--bg, #fff); padding: 120px 40px; }
+.container { max-width: 1120px; margin: 0 auto; }
 
-.header { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px; }
-.eyebrow { color: var(--sage); }
-.headline {
-  font-family: var(--font-script); font-size: clamp(40px, 6vw, 64px);
-  color: var(--sage-deep); line-height: 1;
+.chapterRow { display: flex; align-items: center; gap: 20px; margin-bottom: 48px; }
+.chapter { color: var(--copper, #b87333); }
+.chapterLine { flex: 1; height: 0.5px; background: linear-gradient(90deg, var(--copper, #b87333), transparent); opacity: 0.4; }
+
+/* ==========================================================================
+   NUEVA DISTRIBUCIÓN DEL BENTO GRID
+   ========================================================================== */
+.bento {
+  display: grid;
+  /* 3 partes para el texto, 2 partes para las fotos */
+  grid-template-columns: 3fr 2fr; 
+  /* Fila 1 (Texto e imágenes): 480px totales. Fila 2 (Fecha abajo): altura automática */
+  grid-template-rows: 480px auto; 
+  gap: 20px;
 }
 
-/* Floral divider */
-.floralDivider { display: flex; align-items: center; gap: 12px; width: 220px; }
-.divLine { flex: 1; height: 0.5px; background: linear-gradient(90deg, transparent, var(--sage-light)); }
-.floralDivider > svg { flex-shrink: 0; }
-
-/* Two-column grid */
-.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
-
-/* Polaroid stack */
-.photoStack { position: relative; height: 420px; }
-.polaroid {
-  position: absolute;
-  background: #fff;
-  padding: 10px 10px 36px;
-  box-shadow: 0 4px 24px rgba(44,48,32,0.13);
-  transform: rotate(var(--rot, 0deg));
-  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s, z-index 0s;
+/* Fila Superior - Izquierda */
+.storyCard {
+  grid-column: 1; 
+  grid-row: 1;
+  padding: 48px 44px;
+  display: flex; flex-direction: column; gap: 20px;
   cursor: default;
 }
-.polaroid:hover {
-  transform: rotate(0deg) scale(1.03) !important;
-  box-shadow: 0 12px 40px rgba(44,48,32,0.2);
-  z-index: 10;
-}
-.polaroid:nth-child(1) { top: 0; left: 0; width: 240px; z-index: 2; }
-.polaroid:nth-child(2) { bottom: 0; right: 20px; width: 210px; z-index: 1; }
-.polaroidImg { width: 100%; overflow: hidden; }
-.polaroidImg img { width: 100%; height: 180px; object-fit: cover; object-position: center 20%; display: block; }
-.polaroidCaption {
-  font-family: var(--font-script); font-size: 16px; color: var(--text-light);
-  text-align: center; margin-top: 6px; line-height: 1;
+
+/* Fila Superior - Derecha (Se dividen el alto de la fila 1 en partes iguales con flex o subgrid) */
+.photo1 {
+  grid-column: 2; 
+  grid-row: 1;
+  height: calc(50% - 10px); /* Ocupa exactamente la mitad superior (restando la mitad del gap) */
+  overflow: hidden; 
+  position: relative;
 }
 
-/* Story text */
-.storyText { display: flex; flex-direction: column; gap: 20px; }
-.body { font-family: var(--font-serif); font-size: 18px; line-height: 1.8; color: var(--text); }
-.pullQuote {
-  font-family: var(--font-script); font-size: 28px; color: var(--sage-deep);
-  line-height: 1.3; padding-left: 20px;
-  border-left: 2px solid var(--sage-light);
+.photo2 {
+  grid-column: 2; 
+  grid-row: 1;
+  height: calc(50% - 10px); /* Ocupa exactamente la mitad inferior */
+  margin-top: auto;         /* Se empuja hacia el fondo de la celda */
+  overflow: hidden; 
+  position: relative;
 }
-.sig { font-family: var(--font-serif); font-style: italic; font-size: 15px; color: var(--text-light); }
 
-/* Full-width photo */
-.fullPhoto {
-  position: relative; height: 420px; overflow: hidden;
-  border-radius: 4px;
-  box-shadow: 0 4px 32px rgba(44,48,32,0.1);
+/* Fila Inferior - Abarca todo el ancho (desde columna 1 hasta la 3) */
+.dateCard {
+  grid-column: 1 / 3; 
+  grid-row: 2;
+  padding: 36px 44px;
+  cursor: default;
+
+  /* Volvemos a flexbox para controlar los empujes con márgenes */
+  display: flex;
+  align-items: center;
+  gap: 24px;
 }
-.fullPhoto img { width: 100%; height: 100%; object-fit: cover; object-position: center 15%; display: block; transition: transform 8s ease; }
-.fullPhoto:hover img { transform: scale(1.04); }
-.fullPhotoOverlay {
+
+.dateCard > div:first-child {
+  min-width: 180px; 
+}
+
+/* ==========================================================================
+   DETALLES VISUALES Y ANIMACIONES
+   ========================================================================== */
+.photo1 img, .photo2 img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 8s ease;
+}
+.photo1:hover img, .photo2:hover img { transform: scale(1.06); }
+.photoSheen {
   position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(44,48,32,0.4) 0%, transparent 60%);
+  background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 50%);
+  pointer-events: none;
 }
-.fullPhotoCaption { position: absolute; bottom: 24px; right: 32px; }
 
+.cardLabel { color: var(--copper, #b87333); display: block; margin-bottom: 4px; }
+.headline { font-family: var(--serif); font-size: clamp(28px, 4vw, 44px); font-weight: 600; color: var(--dark, #111); line-height: 1.15; letter-spacing: -0.02em; }
+.body { font-family: var(--sans); font-size: 16px; line-height: 1.75; color: var(--text, #333); }
+.cardFooter { display: flex; align-items: center; gap: 10px; margin-top: auto; padding-top: 16px; }
+.readMore { color: var(--dark, #111); }
+.arrow { font-size: 16px; color: var(--copper, #b87333); transition: transform 0.3s; }
+.storyCard:hover .arrow { transform: translateX(6px); }
+
+/* Ajustes internos para la tarjeta horizontal de la fecha */
+.bigNum { 
+  font-family: var(--serif); 
+  font-size: 72px; 
+  font-weight: 700; 
+  color: var(--dark, #111); 
+  line-height: 1; 
+  letter-spacing: -0.04em;
+  
+  margin-left: 40px;     /* Ajusta este número (más alto o más bajo) para mover el 14 a tu antojo */
+  margin-right: auto;    /* Esto empuja todo lo que está a su derecha hasta el final */
+}
+.dateLabel { font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted, #666); }
+.copperRule { 
+  width: 1px; 
+  height: 40px; 
+  background: var(--copper, #b87333); 
+  opacity: 0.6;
+  margin: 0 12px;
+}
+.dateSub { 
+  font-family: var(--serif); 
+  font-style: italic; 
+  font-size: 18px; 
+  color: var(--text-muted, #666);
+  white-space: nowrap; /* Evita que el texto salte de línea */
+}
+
+/* Animaciones */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.215, 0.610, 0.355, 1), transform 0.8s cubic-bezier(0.215, 0.610, 0.355, 1);
+}
+.revealScale {
+  opacity: 0;
+  transform: scale(0.95) translateY(15px);
+  transition: opacity 0.9s cubic-bezier(0.215, 0.610, 0.355, 1), transform 0.9s cubic-bezier(0.215, 0.610, 0.355, 1);
+}
+.d1 { transition-delay: 0.1s; }
+.d2 { transition-delay: 0.25s; }
+.d3 { transition-delay: 0.4s; }
+
+.animActive .reveal { opacity: 1; transform: translateY(0); }
+.animActive .revealScale { opacity: 1; transform: scale(1) translateY(0); }
+
+/* Responsive en móviles: Volvemos a una sola columna vertical */
 @media (max-width: 768px) {
-  .section { padding: 72px 24px; }
-  .grid { grid-template-columns: 1fr; gap: 48px; }
-  .photoStack { height: 300px; }
-  .polaroid:nth-child(1) { width: 200px; }
-  .polaroid:nth-child(2) { width: 175px; }
-  .fullPhoto { height: 280px; }
+  .section { padding: 80px 20px; }
+  .bento { grid-template-columns: 1fr; grid-template-rows: auto 240px 240px auto; }
+  .storyCard { grid-column: 1; grid-row: 1; }
+  .photo1    { grid-column: 1; grid-row: 2; height: 100%; }
+  .photo2    { grid-column: 1; grid-row: 3; height: 100%; margin-top: 0; }
+  .dateCard  { grid-column: 1; grid-row: 4; flex-direction: column; text-align: center; }
+  .copperRule { width: 40px; height: 1px; margin: 8px auto; }
+  .bigNum { font-size: 56px; }
+  .d2, .d3 { transition-delay: 0.15s; }
 }
