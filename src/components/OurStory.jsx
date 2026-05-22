@@ -61,12 +61,6 @@ export default function OurStory() {
     <section id="story" ref={sectionRef} className={`${styles.section} ${animationClass}`}>
       <div className={styles.container}>
 
-        {/* Chapter label */}
-        <div className={styles.chapterRow}>
-          <span className={`label-caps ${styles.chapter}`}>Chapter I</span>
-          <span className={styles.chapterLine} />
-        </div>
-
         {/* Bento grid */}
         <div className={styles.bento}>
 
@@ -74,44 +68,40 @@ export default function OurStory() {
           <TiltCard className={`glass ${styles.storyCard} ${styles.reveal} ${styles.d1}`}>
             <span className={`label-caps ${styles.cardLabel}`}>Nuestra Historia</span>
             <h2 className={styles.headline}>
-              Un Archivo<br/>de Momentos
+              El Comienzo de<br/>Algo Eterno
             </h2>
             <p className={styles.body}>
-              Lo que comenzó como un encuentro casual se transformó en una narrativa compartida de crecimiento, viajes y una conexión inquebrantable. Este no es solo un evento — es el registro de una promesa.
+              Lo que nació como una bonita coincidencia se ha convertido en nuestro proyecto más importante. El viaje continúa y no podíamos imaginar dar este paso sin las personas que más queremos a nuestro lado.
             </p>
             <p className={styles.body} style={{opacity: 0.7}}>
-              Diseñado con la intención de la permanencia. Erik y Keren invitan a sus seres más cercanos a ser parte de este próximo volumen editorial en sus vidas.
+              Erik y Keren invitan a sus seres más cercanos a ser parte de este próximo capítulo de sus vidas.
             </p>
-            <div className={styles.cardFooter}>
-              <span className={`label-caps ${styles.readMore}`}>Leer más</span>
-              <span className={styles.arrow}>→</span>
-            </div>
           </TiltCard>
 
           {/* Photo 1 — hands */}
-          <div className={`${styles.photo1} ${styles.revealScale} ${styles.d2}`}>
-            <img src="./photo-hands.jpg" alt="Hands with rings" />
+          <TiltCard className={`${styles.photo1} ${styles.revealScale} ${styles.d2}`}>
+            <img src="./photo-hands.jpg" alt="Manos con anillos" />
             <div className={styles.photoSheen} />
-          </div>
+          </TiltCard>
 
           {/* Photo 2 — bridge */}
-          <div className={`${styles.photo2} ${styles.revealScale} ${styles.d3}`}>
-            <img src="./photo-bridge.jpg" alt="On the bridge" />
+          <TiltCard className={`${styles.photo2} ${styles.revealScale} ${styles.d3}`}>
+            <img src="./photo-bridge.jpg" alt="En el puente" />
             <div className={styles.photoSheen} />
-          </div>
+          </TiltCard>
 
           {/* Date stat card — Ahora expandido a lo ancho */}
 <TiltCard className={`glass ${styles.dateCard} ${styles.reveal} ${styles.d3}`}>
   <div>
-    <span className={`label-caps ${styles.cardLabel}`}>Save the Date</span>
-    <p className={styles.dateLabel}>September · 2025</p>
+    <span className={`label-caps ${styles.cardLabel}`}>Reserva la fecha</span>
+    <p className={styles.dateLabel}>Septiembre · 2026</p>
   </div>
   
-  <p className={styles.bigNum}>14</p>
+  <p className={styles.bigNum}>19</p>
   
   <div className={styles.copperRule} />
   
-  <p className={styles.dateSub}>Sonoma, California</p>
+  <p className={styles.dateSub}>Yonkers, NY</p>
 </TiltCard>
 
         </div>

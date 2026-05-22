@@ -107,3 +107,11 @@
   from { opacity:0; transform:translateY(28px); }
   to   { opacity:1; transform:none; }
 }
+/* ── MOBILE RESPONSIVE ── */
+@media (max-width: 480px) {
+  .names { font-size: clamp(40px, 14vw, 64px); margin-bottom: 20px; }
+  .metaRow { flex-direction: column; gap: 8px; }
+  .metaDot { display: none; }
+  .meta { font-size: 11px; }
+  .heroCta { padding: 13px 32px; font-size: 10px; }
+}

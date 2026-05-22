@@ -21,12 +21,12 @@ function TiltCard({ children, className }) {
 }
 
 function CountdownBlock() {
-  const { days, hours, minutes, seconds } = useCountdown('2026-09-14T16:00:00');
+  const { days, hours, minutes, seconds } = useCountdown('2026-09-19T15:00:00');
   return (
-    <div className={`${styles.countdownCard} reveal d3`}>
-      <span className={`label-caps ${styles.cardLabel}`} style={{color:'rgba(212,147,90,0.7)'}}>Until we say I do</span>
+    <div className={styles.countdownCard}>
+      <span className={`label-caps ${styles.cardLabel}`} style={{color:'rgba(212,147,90,0.7)'}}>Hasta el gran día</span>
       <div className={styles.countdownUnits}>
-        {[['days',days],['hrs',hours],['min',minutes],['sec',seconds]].map(([l,v],i,a) => (
+        {[['días',days],['hrs',hours],['min',minutes],['seg',seconds]].map(([l,v],i,a) => (
           <div key={l} className={styles.unit}>
             <span className={styles.unitNum}>{String(v).padStart(2,'0')}</span>
             <span className={styles.unitLabel}>{l}</span>
@@ -43,41 +43,54 @@ export default function Events() {
     <section id="details" className={styles.section}>
       <div className={styles.container}>
         <div className={styles.chapterRow}>
-          <span className={`label-caps reveal ${styles.chapter}`}>Logística</span>
+          <span className={`label-caps reveal ${styles.chapter}`}>Detalles</span>
           <span className={styles.chapterLine} />
         </div>
         <div className={styles.bento}>
           <div className={`${styles.photoBanner} reveal-scale`}>
-            <img src="./photo-laugh.jpg" alt="Erik and Keren laughing" />
+            <img src="./photo-laugh.jpg" alt="Erik y Keren riendo" />
             <div className={styles.bannerOverlay} />
             <div className={styles.bannerText}>
-              <p className={`label-caps ${styles.bannerLabel}`}>Saturday · 14 September 2025</p>
-              <h2 className={styles.bannerHeadline}>The Day</h2>
+              <p className={`label-caps ${styles.bannerLabel}`}>Sábado · 19 Septiembre 2026</p>
+              <h2 className={styles.bannerHeadline}>El Día</h2>
             </div>
           </div>
           <TiltCard className={`glass ${styles.eventCard} reveal d1`}>
             <div className={styles.eventIcon}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1"><path d="M12 2L2 7v15h20V7L12 2zM8 22V12h8v10"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M12 4v16" />
+                <path d="M9 7h6" />
+                <path d="M5 11l7-5 7 5" />
+                <path d="M6 11v9h12v-9" />
+                <path d="M9 20v-5h6v5" />
+              </svg>
             </div>
             <span className={`label-caps ${styles.cardLabel}`}>Ceremonia</span>
-            <h3 className={styles.eventTitle}>Ceremony</h3>
+            <h3 className={styles.eventTitle}>Ceremonia</h3>
             <div className={styles.copperRule} />
-            <p className={styles.eventTime}>Sábado, 14 de Septiembre · 16:00</p>
-            <p className={styles.eventVenue}>Capilla del Bosque Antiguo</p>
-            <p className={styles.eventAddress}>Sonoma, California</p>
-            <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className={styles.mapLink}>Get Directions →</a>
+            <p className={styles.eventTime}>Sábado, 19 de Septiembre · 3:00 PM - 4:00 PM</p>
+            <p className={styles.eventVenue}>Ceremonia</p>
+            <p className={styles.eventAddress}>112 Radford St, Yonkers, NY 10705</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=112+Radford+St,+Yonkers,+NY+10705" target="_blank" rel="noopener noreferrer" className={styles.mapLink}>Cómo llegar →</a>
           </TiltCard>
           <TiltCard className={`glass ${styles.eventCard} reveal d2`}>
             <div className={styles.eventIcon}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M9 4l6 2" />
+                <path d="M14.5 6H9.5" />
+                <path d="M9 6c0 2.4.7 4 1.5 5.4.5.8 1 1.6 1.5 2.6.5-1 1-1.8 1.5-2.6.8-1.4 1.5-3 1.5-5.4" />
+                <path d="M12 14v5" />
+                <path d="M9 19h6" />
+              </svg>
             </div>
             <span className={`label-caps ${styles.cardLabel}`}>Recepción</span>
-            <h3 className={styles.eventTitle}>Reception</h3>
+            <h3 className={styles.eventTitle}>Recepción</h3>
             <div className={styles.copperRule} />
-            <p className={styles.eventTime}>Continuación · 19:00</p>
-            <p className={styles.eventVenue}>El Invernadero Editorial</p>
-            <p className={styles.eventAddress}>456 Oak Ridge, Sonoma</p>
-            <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className={styles.mapLink}>Get Directions →</a>
+            <p className={styles.eventTime}>Cocktail · 4:00 PM - 5:00 PM</p>
+            <p className={styles.eventTime}>Recepción · 5:30 PM</p>
+            <p className={styles.eventVenue}>Recepción</p>
+            <p className={styles.eventAddress}>112 Radford St, Yonkers, NY 10705</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=112+Radford+St,+Yonkers,+NY+10705" target="_blank" rel="noopener noreferrer" className={styles.mapLink}>Cómo llegar →</a>
           </TiltCard>
           <CountdownBlock />
         </div>

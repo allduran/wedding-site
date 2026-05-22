@@ -56,3 +56,8 @@
   /* Mobile menu links always dark */
   .nav:not(.scrolled) .links a { color: var(--text-muted); }
 }
+/* ── MOBILE RESPONSIVE ── */
+@media (max-width: 720px) {
+  /* Hide desktop links label text to save space, show burger */
+  .cta { display: none; }
+}

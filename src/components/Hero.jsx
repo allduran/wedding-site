@@ -36,7 +36,7 @@ export default function Hero() {
         <img
           ref={imgRef}
           src="./photo-close.jpg"
-          alt="Erik and Keren"
+          alt="Erik y Keren"
           className={`${styles.img} ${loaded ? styles.imgLoaded : ''}`}
         />
         <div className={styles.overlay} />
@@ -46,22 +46,21 @@ export default function Hero() {
 
       {/* Text */}
       <div className={styles.content} ref={textRef}>
-        <p className={`label-caps ${styles.eyebrow}`}>The Editorial Archive</p>
         <h1 className={styles.names}>Erik &amp; Keren</h1>
         <div className={styles.metaRow}>
           <span className={styles.metaDot} />
-          <p className={styles.meta}>14 September 2025</p>
+          <p className={styles.meta}>19 Septiembre 2026</p>
           <span className={styles.metaDot} />
-          <p className={styles.meta}>Sonoma, California</p>
+          <p className={styles.meta}>Yonkers, NY</p>
           <span className={styles.metaDot} />
         </div>
-        <a href="#rsvp" className={styles.heroCta}>RSVP Now</a>
+        <a href="#rsvp" className={styles.heroCta}>Confirmar asistencia</a>
       </div>
 
       {/* Scroll hint */}
       <div className={styles.scrollHint}>
         <span className={styles.scrollLine} />
-        <span className={styles.scrollText}>scroll</span>
+        <span className={styles.scrollText}>desliza</span>
       </div>
     </section>
   );

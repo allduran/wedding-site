@@ -6,11 +6,11 @@ export default function Footer() {
         <p className={styles.bigMono}>E&amp;K</p>
         <div className={styles.rule} />
         <nav className={styles.links}>
-          {[['#story','Our Story'],['#details','Event Details'],['#rsvp','RSVP']].map(([h,l]) => (
+          {[['#story','Nuestra Historia'],['#details','Detalles del Evento'],['#rsvp','Confirmación']].map(([h,l]) => (
             <a key={h} href={h}>{l}</a>
           ))}
         </nav>
-        <p className={styles.copy}>© 2025 Erik &amp; Keren — An Editorial Archive</p>
+        <p className={styles.copy}>© 2026 Erik &amp; Keren</p>
       </div>
     </footer>
   );

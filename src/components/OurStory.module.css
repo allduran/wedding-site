@@ -78,10 +78,6 @@
 .cardLabel { color: var(--copper, #b87333); display: block; margin-bottom: 4px; }
 .headline { font-family: var(--serif); font-size: clamp(28px, 4vw, 44px); font-weight: 600; color: var(--dark, #111); line-height: 1.15; letter-spacing: -0.02em; }
 .body { font-family: var(--sans); font-size: 16px; line-height: 1.75; color: var(--text, #333); }
-.cardFooter { display: flex; align-items: center; gap: 10px; margin-top: auto; padding-top: 16px; }
-.readMore { color: var(--dark, #111); }
-.arrow { font-size: 16px; color: var(--copper, #b87333); transition: transform 0.3s; }
-.storyCard:hover .arrow { transform: translateX(6px); }
 
 /* Ajustes internos para la tarjeta horizontal de la fecha */
 .bigNum { 
@@ -92,7 +88,7 @@
   line-height: 1; 
   letter-spacing: -0.04em;
   
-  margin-left: 40px;     /* Ajusta este número (más alto o más bajo) para mover el 14 a tu antojo */
+  margin-left: 20px;     /* Ajusta este número (más alto o más bajo) para mover el 14 a tu antojo */
   margin-right: auto;    /* Esto empuja todo lo que está a su derecha hasta el final */
 }
 .dateLabel { font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted, #666); }
@@ -131,13 +127,37 @@
 
 /* Responsive en móviles: Volvemos a una sola columna vertical */
 @media (max-width: 768px) {
-  .section { padding: 80px 20px; }
-  .bento { grid-template-columns: 1fr; grid-template-rows: auto 240px 240px auto; }
-  .storyCard { grid-column: 1; grid-row: 1; }
-  .photo1    { grid-column: 1; grid-row: 2; height: 100%; }
-  .photo2    { grid-column: 1; grid-row: 3; height: 100%; margin-top: 0; }
-  .dateCard  { grid-column: 1; grid-row: 4; flex-direction: column; text-align: center; }
-  .copperRule { width: 40px; height: 1px; margin: 8px auto; }
-  .bigNum { font-size: 56px; }
+  .section { padding: 72px 20px; }
+
+  .bento {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto;
+    gap: 16px;
+  }
+
+  /* Story card full width */
+  .storyCard { grid-column: 1; grid-row: 1; padding: 32px 28px; }
+
+  /* Both photos side by side in a single row — compact, adds visual interest */
+  .photo1 { grid-column: 1; grid-row: 2; height: 220px; margin-top: 0; }
+  .photo2 { grid-column: 1; grid-row: 3; height: 220px; margin-top: 0; display: none; }
+
+  /* Date card full width horizontal → stacked vertically */
+  .dateCard {
+    grid-column: 1; grid-row: 4;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 28px 24px;
+  }
+  .copperRule { width: 40px; height: 1px; margin: 4px 0; }
+  .bigNum { font-size: 56px; margin-left: 0; margin-right: 0; }
+  .dateSub { white-space: normal; }
   .d2, .d3 { transition-delay: 0.15s; }
+}
+
+@media (max-width: 400px) {
+  .storyCard { padding: 28px 20px; }
+  .photo1 { height: 180px; }
+  .bigNum { font-size: 48px; }
 }

@@ -6,3 +6,9 @@
 .links a { font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
 .links a:hover { color: var(--dark); }
 .copy { font-family: var(--sans); font-size: 12px; color: var(--text-muted); opacity: 0.55; }
+/* ── MOBILE RESPONSIVE ── */
+@media (max-width: 600px) {
+  .footer { padding: 56px 20px; }
+  .bigMono { font-size: 52px; }
+  .links { flex-direction: column; gap: 16px; align-items: center; }
+}
