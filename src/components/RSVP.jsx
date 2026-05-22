@@ -7,10 +7,39 @@ export default function RSVP() {
   const [sent, setSent] = useState(false);
 
   const change = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }));
-  const submit = e => {
-    e.preventDefault();
-    setSent(true);
-  };
+  
+  const submit = async e => {
+  e.preventDefault();
+
+  try {
+    const formData = new FormData();
+
+    formData.append('name', form.name);
+    formData.append('email', form.email);
+    formData.append('attending', form.attending);
+    formData.append('guests', form.guests);
+
+    const response = await fetch(
+      'https://script.google.com/macros/s/AKfycbyj2s1Hap1koAPFzuxYS1q5LHvlBaZNJlofyatNYufveZiPEbRW_tnQt64lknOpHUncnQ/exec',
+      {
+        method: 'POST',
+        body: formData,
+      }
+    );
+
+    const data = await response.json();
+
+    if (data.success) {
+      setSent(true);
+    } else {
+      alert('Error enviando formulario');
+    }
+
+  } catch (err) {
+    console.error(err);
+    alert('Error de conexión');
+  }
+};
   const filled = value => String(value).trim() !== '';
 
   return (
