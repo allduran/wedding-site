@@ -1,15 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
+import { useLang } from '../useLang';
 import styles from './Hero.module.css';
 
 export default function Hero() {
   const imgRef  = useRef(null);
   const textRef = useRef(null);
   const [loaded, setLoaded] = useState(false);
+  const { t } = useLang();
 
-  // Kinetic zoom on load
   useEffect(() => { setTimeout(() => setLoaded(true), 80); }, []);
 
-  // Scroll parallax on image + text
   useEffect(() => {
     const fn = () => {
       const y = window.scrollY;
@@ -20,7 +20,6 @@ export default function Hero() {
     return () => window.removeEventListener('scroll', fn);
   }, [loaded]);
 
-  // Mouse tilt on names
   const handleMouseMove = e => {
     if (!textRef.current) return;
     const { left, top, width, height } = textRef.current.getBoundingClientRect();
@@ -31,36 +30,26 @@ export default function Hero() {
 
   return (
     <section id="hero" className={styles.hero} onMouseMove={handleMouseMove}>
-      {/* Photo */}
       <div className={styles.imgWrap}>
-        <img
-          ref={imgRef}
-          src="./photo-close.jpg"
-          alt="Erik y Keren"
-          className={`${styles.img} ${loaded ? styles.imgLoaded : ''}`}
-        />
+        <img ref={imgRef} src="./photo-close.jpg" alt="Erik y Keren"
+          className={`${styles.img} ${loaded ? styles.imgLoaded : ''}`} />
         <div className={styles.overlay} />
-        {/* Copper vignette */}
         <div className={styles.vignette} />
       </div>
-
-      {/* Text */}
       <div className={styles.content} ref={textRef}>
         <h1 className={styles.names}>Erik &amp; Keren</h1>
         <div className={styles.metaRow}>
           <span className={styles.metaDot} />
-          <p className={styles.meta}>19 Septiembre 2026</p>
+          <p className={styles.meta}>{t.hero.date}</p>
           <span className={styles.metaDot} />
           <p className={styles.meta}>Yonkers, NY</p>
           <span className={styles.metaDot} />
         </div>
-        <a href="#rsvp" className={styles.heroCta}>Confirmar asistencia</a>
+        <a href="#rsvp" className={styles.heroCta}>{t.hero.cta}</a>
       </div>
-
-      {/* Scroll hint */}
       <div className={styles.scrollHint}>
         <span className={styles.scrollLine} />
-        <span className={styles.scrollText}>desliza</span>
+        <span className={styles.scrollText}>{t.hero.scroll}</span>
       </div>
     </section>
   );

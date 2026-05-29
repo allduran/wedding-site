@@ -1,4 +1,5 @@
 import './index.css';
+import { LangProvider } from './LangProvider';
 import { useScrollReveal } from './hooks/useScrollReveal';
 import Nav from './components/Nav';
 import Hero from './components/Hero';
@@ -7,7 +8,7 @@ import Events from './components/Events';
 import RSVP from './components/RSVP';
 import Footer from './components/Footer';
 
-export default function App() {
+function Inner() {
   useScrollReveal();
   return (
     <>
@@ -20,5 +21,13 @@ export default function App() {
       </main>
       <Footer />
     </>
+  );
+}
+
+export default function App() {
+  return (
+    <LangProvider>
+      <Inner />
+    </LangProvider>
   );
 }

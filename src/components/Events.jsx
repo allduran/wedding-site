@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { useCountdown } from '../hooks/useCountdown';
+import { useLang } from '../useLang';
 import styles from './Events.module.css';
 
 function TiltCard({ children, className }) {
@@ -22,15 +23,21 @@ function TiltCard({ children, className }) {
 
 function CountdownBlock() {
   const { days, hours, minutes, seconds } = useCountdown('2026-09-19T15:00:00');
+  const { t } = useLang();
+  const units = [
+    [t.events.days, days], [t.events.hrs, hours],
+    [t.events.min, minutes], [t.events.sec, seconds],
+  ];
   return (
     <div className={styles.countdownCard}>
-      <span className={`label-caps ${styles.cardLabel}`} style={{color:'rgba(212,147,90,0.7)'}}>Hasta el gran día</span>
+      <span className={`label-caps ${styles.cardLabel}`} style={{color:'rgba(212,147,90,0.7)'}}>
+        {t.events.countdown}
+      </span>
       <div className={styles.countdownUnits}>
-        {[['días',days],['hrs',hours],['min',minutes],['seg',seconds]].map(([l,v],i,a) => (
+        {units.map(([l, v]) => (
           <div key={l} className={styles.unit}>
             <span className={styles.unitNum}>{String(v).padStart(2,'0')}</span>
             <span className={styles.unitLabel}>{l}</span>
-            {i < a.length-1 && <span className={styles.unitSep}>:</span>}
           </div>
         ))}
       </div>
@@ -39,59 +46,57 @@ function CountdownBlock() {
 }
 
 export default function Events() {
+  const { t } = useLang();
   return (
     <section id="details" className={styles.section}>
       <div className={styles.container}>
         <div className={styles.chapterRow}>
-          <span className={`label-caps reveal ${styles.chapter}`}>Detalles</span>
+          <span className={`label-caps reveal ${styles.chapter}`}>{t.events.chapter}</span>
           <span className={styles.chapterLine} />
         </div>
         <div className={styles.bento}>
           <div className={`${styles.photoBanner} reveal-scale`}>
-            <img src="./photo-laugh.jpg" alt="Erik y Keren riendo" />
+            <img src="./photo-laugh.jpg" alt="Erik y Keren" />
             <div className={styles.bannerOverlay} />
             <div className={styles.bannerText}>
-              <p className={`label-caps ${styles.bannerLabel}`}>Sábado · 19 Septiembre 2026</p>
-              <h2 className={styles.bannerHeadline}>El Día</h2>
+              <p className={`label-caps ${styles.bannerLabel}`}>{t.events.bannerLabel}</p>
+              <h2 className={styles.bannerHeadline}>{t.events.bannerHeadline}</h2>
             </div>
           </div>
+
           <TiltCard className={`glass ${styles.eventCard} reveal d1`}>
             <div className={styles.eventIcon}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M12 4v16" />
-                <path d="M9 7h6" />
-                <path d="M5 11l7-5 7 5" />
-                <path d="M6 11v9h12v-9" />
-                <path d="M9 20v-5h6v5" />
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 4v16"/><path d="M9 7h6"/><path d="M5 11l7-5 7 5"/><path d="M6 11v9h12v-9"/><path d="M9 20v-5h6v5"/>
               </svg>
             </div>
-            <span className={`label-caps ${styles.cardLabel}`}>Ceremonia</span>
-            <h3 className={styles.eventTitle}>Ceremonia</h3>
+            <span className={`label-caps ${styles.cardLabel}`}>{t.events.ceremonyLabel}</span>
+            <h3 className={styles.eventTitle}>{t.events.ceremonyTitle}</h3>
             <div className={styles.copperRule} />
-            <p className={styles.eventTime}>Sábado, 19 de Septiembre · 3:00 PM - 4:00 PM</p>
-            <p className={styles.eventVenue}>Ceremonia</p>
+            <p className={styles.eventTime}>{t.events.ceremonyTime}</p>
+            <p className={styles.eventVenue}>{t.events.ceremonyTitle}</p>
             <p className={styles.eventAddress}>112 Radford St, Yonkers, NY 10705</p>
-            <a href="https://www.google.com/maps/search/?api=1&query=112+Radford+St,+Yonkers,+NY+10705" target="_blank" rel="noopener noreferrer" className={styles.mapLink}>Cómo llegar →</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=112+Radford+St,+Yonkers,+NY+10705"
+              target="_blank" rel="noopener noreferrer" className={styles.mapLink}>{t.events.directions}</a>
           </TiltCard>
+
           <TiltCard className={`glass ${styles.eventCard} reveal d2`}>
             <div className={styles.eventIcon}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M9 4l6 2" />
-                <path d="M14.5 6H9.5" />
-                <path d="M9 6c0 2.4.7 4 1.5 5.4.5.8 1 1.6 1.5 2.6.5-1 1-1.8 1.5-2.6.8-1.4 1.5-3 1.5-5.4" />
-                <path d="M12 14v5" />
-                <path d="M9 19h6" />
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M9 4l6 2"/><path d="M14.5 6H9.5"/><path d="M9 6c0 2.4.7 4 1.5 5.4.5.8 1 1.6 1.5 2.6.5-1 1-1.8 1.5-2.6.8-1.4 1.5-3 1.5-5.4"/><path d="M12 14v5"/><path d="M9 19h6"/>
               </svg>
             </div>
-            <span className={`label-caps ${styles.cardLabel}`}>Recepción</span>
-            <h3 className={styles.eventTitle}>Recepción</h3>
+            <span className={`label-caps ${styles.cardLabel}`}>{t.events.receptionLabel}</span>
+            <h3 className={styles.eventTitle}>{t.events.receptionTitle}</h3>
             <div className={styles.copperRule} />
-            <p className={styles.eventTime}>Cocktail · 4:00 PM - 5:00 PM</p>
-            <p className={styles.eventTime}>Recepción · 5:30 PM</p>
-            <p className={styles.eventVenue}>Recepción</p>
+            <p className={styles.eventTime}>{t.events.receptionTime1}</p>
+            <p className={styles.eventTime}>{t.events.receptionTime2}</p>
+            <p className={styles.eventVenue}>{t.events.receptionTitle}</p>
             <p className={styles.eventAddress}>112 Radford St, Yonkers, NY 10705</p>
-            <a href="https://www.google.com/maps/search/?api=1&query=112+Radford+St,+Yonkers,+NY+10705" target="_blank" rel="noopener noreferrer" className={styles.mapLink}>Cómo llegar →</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=112+Radford+St,+Yonkers,+NY+10705"
+              target="_blank" rel="noopener noreferrer" className={styles.mapLink}>{t.events.directions}</a>
           </TiltCard>
+
           <CountdownBlock />
         </div>
       </div>
