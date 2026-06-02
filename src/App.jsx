@@ -6,6 +6,7 @@ import Hero from './components/Hero';
 import OurStory from './components/OurStory';
 import Events from './components/Events';
 import RSVP from './components/RSVP';
+import Registry from './components/Registry';
 import Footer from './components/Footer';
 
 function Inner() {
@@ -18,6 +19,7 @@ function Inner() {
         <OurStory />
         <Events />
         <RSVP />
+        <Registry />
       </main>
       <Footer />
     </>

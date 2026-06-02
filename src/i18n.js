@@ -57,6 +57,12 @@ export const translations = {
       closedTitle: 'Confirmation Closed',
       closedMessage: 'The confirmation deadline ended on August 19. If you need to communicate any changes, please contact us directly.',
     },
+    registry: {
+      label: 'Registry',
+      headline: 'Gift List',
+      text: 'Your presence is the greatest gift. If you would like to bless the bride and groom with something extra, you can visit our Amazon gift list.',
+      link: 'View Amazon Gift List',
+    },
     footer: {
       story: 'Our Story',
       details: 'Event Details',
@@ -121,6 +127,12 @@ export const translations = {
       captionDate: '19 · IX · 2026',
       closedTitle: 'Confirmaciones cerradas',
       closedMessage: 'El plazo para confirmar asistencia finalizó el 19 de agosto. Si necesitas comunicar cualquier cambio, por favor contacta directamente con nosotros.',
+    },
+    registry: {
+      label: 'Lista de regalos',
+      headline: 'Lista de regalos',
+      text: 'Tu presencia es nuestro mayor regalo. Si deseas bendecir a los novios con algo especial, puedes visitar nuestra lista de regalos en Amazon.',
+      link: 'Ver lista en Amazon',
     },
     footer: {
       story: 'Nuestra Historia',
