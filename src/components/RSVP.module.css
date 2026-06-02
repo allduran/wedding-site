@@ -128,3 +128,32 @@ select.input:focus { color: #fff; }
   .photoSide { height: 220px; }
   .formPanel { padding: 32px 20px; }
 }
+
+/* RSVP Closed */
+
+.closedBox {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px 0;
+}
+
+.closedIcon {
+  font-size: 32px;
+  color: var(--copper);
+}
+
+.closedTitle {
+  font-family: var(--serif);
+  font-size: 32px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.closedText {
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba(255,248,242,0.6);
+  max-width: 420px;
+}

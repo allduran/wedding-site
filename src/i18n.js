@@ -54,6 +54,8 @@ export const translations = {
       errorMsg: 'Error sending form',
       errorConn: 'Connection error',
       captionDate: '19 · IX · 2026',
+      closedTitle: 'Confirmation Closed',
+      closedMessage: 'The confirmation deadline ended on August 19. If you need to communicate any changes, please contact us directly.',
     },
     footer: {
       story: 'Our Story',
@@ -117,6 +119,8 @@ export const translations = {
       errorMsg: 'Error enviando formulario',
       errorConn: 'Error de conexión',
       captionDate: '19 · IX · 2026',
+      closedTitle: 'Confirmaciones cerradas',
+      closedMessage: 'El plazo para confirmar asistencia finalizó el 19 de agosto. Si necesitas comunicar cualquier cambio, por favor contacta directamente con nosotros.',
     },
     footer: {
       story: 'Nuestra Historia',
