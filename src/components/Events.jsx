@@ -3,6 +3,8 @@ import { useCountdown } from '../hooks/useCountdown';
 import { useLang } from '../useLang';
 import styles from './Events.module.css';
 
+const MAP_SEARCH_URL = 'https://www.google.com/maps/search/?api=1&query=South+Presbyterian+Church,+112+Radford+St,+Yonkers,+NY+10705';
+
 function TiltCard({ children, className }) {
   const ref = useRef(null);
   const move = e => {
@@ -76,7 +78,7 @@ export default function Events() {
             <p className={styles.eventTime}>{t.events.ceremonyTime}</p>
             <p className={styles.eventVenue}>{t.events.ceremonyTitle}</p>
             <p className={styles.eventAddress}>112 Radford St, Yonkers, NY 10705</p>
-            <a href="https://www.google.com/maps/search/?api=1&query=112+Radford+St,+Yonkers,+NY+10705"
+            <a href={MAP_SEARCH_URL}
               target="_blank" rel="noopener noreferrer" className={styles.mapLink}>{t.events.directions}</a>
           </TiltCard>
 
@@ -93,7 +95,7 @@ export default function Events() {
             <p className={styles.eventTime}>{t.events.receptionTime2}</p>
             <p className={styles.eventVenue}>{t.events.receptionTitle}</p>
             <p className={styles.eventAddress}>112 Radford St, Yonkers, NY 10705</p>
-            <a href="https://www.google.com/maps/search/?api=1&query=112+Radford+St,+Yonkers,+NY+10705"
+            <a href={MAP_SEARCH_URL}
               target="_blank" rel="noopener noreferrer" className={styles.mapLink}>{t.events.directions}</a>
           </TiltCard>
 

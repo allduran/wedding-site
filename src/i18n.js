@@ -67,6 +67,7 @@ export const translations = {
     footer: {
       story: 'Our Story',
       details: 'Event Details',
+      registry: 'Registry',
       rsvp: 'Confirmation',
       copy: '© 2026 Erik & Keren',
     },
@@ -139,6 +140,7 @@ export const translations = {
     footer: {
       story: 'Nuestra Historia',
       details: 'Detalles del Evento',
+      registry: 'Lista de regalos',
       rsvp: 'Confirmación',
       copy: '© 2026 Erik & Keren',
     },
