@@ -7,6 +7,7 @@ import OurStory from './components/OurStory';
 import Events from './components/Events';
 import RSVP from './components/RSVP';
 import Registry from './components/Registry';
+import PhotoCarousel from './components/PhotoCarousel';
 import Footer from './components/Footer';
 
 function Inner() {
@@ -20,6 +21,7 @@ function Inner() {
         <Events />
         <RSVP />
         <Registry />
+        <PhotoCarousel />
       </main>
       <Footer />
     </>

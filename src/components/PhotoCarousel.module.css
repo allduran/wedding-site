@@ -1,0 +1,190 @@
+.section {
+  background: var(--bg);
+  padding: 28px 24px 104px;
+}
+
+.container {
+  max-width: 1320px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.label {
+  display: block;
+  color: var(--copper);
+  margin-bottom: 24px;
+}
+
+.frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: transparent;
+}
+
+.slide {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  max-height: 94%;
+  box-shadow: 0 24px 70px rgba(6, 16, 14, 0.14);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.7);
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), filter 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.portrait {
+  width: 50%;
+}
+
+.landscape {
+  width: 80%;
+}
+
+.slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.activeSlide {
+  z-index: 3;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.previousSlide,
+.nextSlide {
+  z-index: 2;
+  opacity: 0.42;
+  filter: saturate(0.82);
+}
+
+.previousSlide {
+  transform: translate(-118%, -50%) scale(0.78);
+}
+
+.nextSlide {
+  transform: translate(18%, -50%) scale(0.78);
+}
+
+.hiddenSlide {
+  z-index: 1;
+}
+
+.control {
+  position: absolute;
+  top: 50%;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255, 248, 242, 0.58);
+  border-radius: 50%;
+  background: rgba(6, 16, 14, 0.42);
+  color: #fff;
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition: background 0.2s, transform 0.2s;
+}
+
+.control:hover {
+  background: rgba(6, 16, 14, 0.72);
+  transform: translateY(-50%) scale(1.04);
+}
+
+.control span {
+  display: block;
+  font-size: 34px;
+  line-height: 1;
+  transform: translateY(-2px);
+}
+
+.previous {
+  left: 18px;
+}
+
+.next {
+  right: 18px;
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.dot {
+  width: 34px;
+  height: 4px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(6, 16, 14, 0.18);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.dot:hover,
+.activeDot {
+  background: var(--copper);
+}
+
+.activeDot {
+  transform: scaleX(1.18);
+}
+
+@media (max-width: 720px) {
+  .section {
+    padding: 24px 12px 76px;
+  }
+
+  .frame {
+    aspect-ratio: 3 / 4;
+  }
+
+  .slide {
+    max-height: 92%;
+  }
+
+  .portrait {
+    width: 78%;
+  }
+
+  .landscape {
+    width: 92%;
+  }
+
+  .previousSlide {
+    transform: translate(-112%, -50%) scale(0.72);
+  }
+
+  .nextSlide {
+    transform: translate(12%, -50%) scale(0.72);
+  }
+
+  .control {
+    width: 40px;
+    height: 40px;
+  }
+
+  .previous {
+    left: 12px;
+  }
+
+  .next {
+    right: 12px;
+  }
+
+  .dots {
+    gap: 8px;
+  }
+
+  .dot {
+    width: 22px;
+  }
+}

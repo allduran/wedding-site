@@ -64,6 +64,14 @@ export const translations = {
       text: 'Your presence is the greatest gift. If you would like to bless the bride and groom with something extra, you can visit our Amazon gift list.',
       link: 'View Amazon Gift List',
     },
+    gallery: {
+      label: 'Album',
+      photoAlt: 'Erik and Keren photo',
+      previous: 'Previous photo',
+      next: 'Next photo',
+      dots: 'Photo album navigation',
+      goTo: 'Go to photo',
+    },
     footer: {
       story: 'Our Story',
       details: 'Event Details',
@@ -136,6 +144,14 @@ export const translations = {
       headline: 'Lista de regalos',
       text: 'Tu presencia es nuestro mayor regalo. Si deseas bendecir a los novios con algo especial, puedes visitar nuestra lista de regalos en Amazon.',
       link: 'Ver lista en Amazon',
+    },
+    gallery: {
+      label: 'Álbum',
+      photoAlt: 'Foto de Erik y Keren',
+      previous: 'Foto anterior',
+      next: 'Siguiente foto',
+      dots: 'Navegación del álbum de fotos',
+      goTo: 'Ir a la foto',
     },
     footer: {
       story: 'Nuestra Historia',
