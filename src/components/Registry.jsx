@@ -1,7 +1,7 @@
 import { useLang } from "../useLang";
 import styles from "./Registry.module.css";
 
-const GIFT_LIST_URL = "https://www.amazon.com/wedding/registry";
+const GIFT_LIST_URL = "https://www.amazon.com/wedding/guest-view/2IMXH3VA74QW5";
 
 export default function Registry() {
   const { t } = useLang();
