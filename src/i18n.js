@@ -3,6 +3,7 @@ export const translations = {
     nav: {
       story: 'Our Story',
       details: 'Event Details',
+      registry: 'Registry',
       rsvp: 'Confirmation',
       contact: 'Contact',
     },
@@ -74,6 +75,7 @@ export const translations = {
     nav: {
       story: 'Nuestra Historia',
       details: 'Detalles del Evento',
+      registry: 'Lista de regalos',
       rsvp: 'Confirmación',
       contact: 'Contacto',
     },
