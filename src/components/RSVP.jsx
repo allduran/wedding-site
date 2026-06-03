@@ -96,6 +96,7 @@ export default function RSVP() {
                 </span>
               ))}
             </h2>
+            <p className={styles.deadline}>{t.rsvp.deadlineText}</p>
 
             {sent ? (
               <div className={styles.thanks}>

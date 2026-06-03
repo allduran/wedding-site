@@ -36,6 +36,7 @@ export default function Nav() {
             ['#details', t.nav.details],
             ['#rsvp',    t.nav.rsvp],
             ['#registry', t.nav.registry],
+            ['#album', t.nav.album],
           ].map(([h, l]) => (
             <li key={h}>
               <a href={h} onClick={close}>{l}</a>

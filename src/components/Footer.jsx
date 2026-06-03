@@ -9,7 +9,7 @@ export default function Footer() {
         <p className={styles.bigMono}>E&amp;K</p>
         <div className={styles.rule} />
         <nav className={styles.links}>
-          {[['#story', t.footer.story], ['#details', t.footer.details], ['#rsvp', t.footer.rsvp], ['#registry', t.footer.registry]].map(([h, l]) => (
+          {[['#story', t.footer.story], ['#details', t.footer.details], ['#rsvp', t.footer.rsvp], ['#registry', t.footer.registry], ['#album', t.footer.album]].map(([h, l]) => (
             <a key={h} href={h}>{l}</a>
           ))}
         </nav>

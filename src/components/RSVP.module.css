@@ -31,6 +31,15 @@
   letter-spacing: -0.03em; line-height: 1.05;
 }
 
+.deadline {
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(255,248,242,0.58);
+  margin-top: -14px;
+  max-width: 420px;
+}
+
 /* Form fields */
 .form { display: flex; flex-direction: column; gap: 24px; }
 .row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }

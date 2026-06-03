@@ -42,7 +42,7 @@ export default function PhotoCarousel() {
   };
 
   return (
-    <section className={styles.section} aria-label={t.gallery.label}>
+    <section id="album" className={styles.section} aria-label={t.gallery.label}>
       <div className={styles.container}>
         <span className={`label-caps reveal ${styles.label}`}>
           {t.gallery.label}
