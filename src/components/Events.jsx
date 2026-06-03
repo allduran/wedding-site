@@ -3,7 +3,7 @@ import { useCountdown } from '../hooks/useCountdown';
 import { useLang } from '../useLang';
 import styles from './Events.module.css';
 
-const MAP_SEARCH_URL = 'https://www.google.com/maps/search/?api=1&query=South+Presbyterian+Church,+112+Radford+St,+Yonkers,+NY+10705';
+const MAP_SEARCH_URL = 'https://maps.google.com/?q=South+Presbyterian+Church,+112+Radford+St,+Yonkers,+NY+10705';
 
 function TiltCard({ children, className }) {
   const ref = useRef(null);
